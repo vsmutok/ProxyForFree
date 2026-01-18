@@ -1,9 +1,13 @@
-# ProxyForFree
+# ProxyForFree 🆓
 
-ProxyForFree is a tool designed to easily set up multiple proxy servers using Proton VPN free config files (`.ovpn`), OpenVPN, and 3proxy. It allows you to route proxy traffic through different VPN tunnels, effectively giving you multiple outgoing IP addresses on a single server.
+ProxyForFree is a tool designed to easily set up multiple **100% free proxy servers** using Proton VPN free config files (`.ovpn`), OpenVPN, and 3proxy. It allows you to route proxy traffic through different VPN tunnels, effectively giving you multiple outgoing IP addresses on a single server without any subscription costs.
+
+---
 
 ## Goal
-The goal of this project is to provide a simple way to manage multiple parallel proxy servers, each connected to a different VPN location using Proton VPN's free tier (or paid), making it easy to interact with them for testing or scraping purposes.
+The goal of this project is to provide a simple, **cost-free** way to manage multiple parallel proxy servers, each connected to a different VPN location using Proton VPN's free tier, making it easy to interact with them for testing or scraping purposes.
+
+---
 
 ## Live Demo
 Usage Example:
@@ -20,11 +24,15 @@ Simply change the port to switch to a different proxy.
 | http://demo_user:deMo_Passw0rd@178.128.207.142:8014  | 🇺🇦 Ukraine  |
 | http://demo_user:deMo_Passw0rd@178.128.207.142:8015  | 🇨🇦 Canada |
 
+---
+
 ## Tech Stack
 - **OpenVPN**: Used to establish VPN connections.
 - **3proxy**: A tiny but powerful proxy server used to route traffic.
 - **Python**: The core management script.
 - **uv**: Modern Python package manager.
+
+---
 
 ## System Requirements
 You need a Linux server (Ubuntu/Debian recommended) with root access. You can use free-tier servers from AWS, Oracle Cloud, DigitalOcean, or any other provider for testing.
@@ -61,6 +69,8 @@ sudo ufw allow 8000:8020/tcp   # Proxy ports range
 sudo ufw enable
 ```
 
+---
+
 ## Configuration
 
 ### VPN Credentials
@@ -82,6 +92,8 @@ OPENVPN_PASS=your_openvpn_password
 PROXY_USER=your_desired_proxy_username
 PROXY_PASS=your_desired_proxy_password
 ```
+
+---
 
 ## How to Run
 
@@ -124,5 +136,21 @@ sudo uv run proxy-stop 8011
 sudo uv run proxy-logs 8011
 ```
 
+---
+
 ## How it Works
 The script uses **Policy Routing** (`ip rule`). Each OpenVPN connection gets its own `tun` interface and a dedicated routing table. 3proxy binds to the specific IP of the `tun` interface, forcing all outgoing traffic through that VPN. This allows you to run dozens of proxies simultaneously on a single machine, each with a different exit IP.
+
+---
+
+### ⚠️ Disclaimer
+
+This repository is created solely for **educational and research purposes**. Use the knowledge acquired responsibly and respect the terms of use of websites. The authors are not responsible for any misuse of the materials.
+
+---
+
+### ⭐ Star History
+
+If this project was useful to you, give it a star! ⭐
+
+---
