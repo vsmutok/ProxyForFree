@@ -1,0 +1,51 @@
+[project]
+name = "proxyforfree"
+version = "0.1.0"
+description = "A simple VPN and Proxy manager using OpenVPN and 3proxy"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    { name = "Vasyl Smutok", email = "vasyl.smutok@gmail.com" }
+]
+dependencies = [
+    "dotenv>=0.9.9",
+]
+
+[project.scripts]
+proxy-manager = "proxy_manager:main"
+proxy-start = "proxy_manager:main_start"
+proxy-stop = "proxy_manager:main_stop"
+proxy-stop-all = "proxy_manager:main_stop_all"
+proxy-status = "proxy_manager:main_status"
+proxy-logs = "proxy_manager:main_logs"
+proxy-list-configs = "proxy_manager:main_list_configs"
+proxy-list-countries = "proxy_manager:main_list_countries"
+
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.0",
+    "ruff>=0.9.0",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "N",      # pep8-naming
+    "UP",     # pyupgrade
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "SIM",    # flake8-simplify
+]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

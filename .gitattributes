@@ -1,0 +1,71 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Python files
+*.py text eol=lf
+*.pyi text eol=lf
+*.pyx text eol=lf
+
+# Configuration files
+*.ini text eol=lf
+*.cfg text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Documentation
+*.md text eol=lf
+*.txt text eol=lf
+*.rst text eol=lf
+
+# Templates
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# Git files
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.gitkeep text eol=lf
+
+# Database files
+*.db binary
+*.sqlite binary
+*.sqlite3 binary
+
+# Python compiled files
+*.pyc binary
+*.pyo binary
+*.pyd binary
+
+# Archives
+*.zip binary
+*.tar binary
+*.gz binary
+*.bz2 binary
+*.7z binary
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text eol=lf
+
+# Lock files
+*.lock linguist-generated=true
+uv.lock linguist-generated=true
+
+# Coverage files
+.coverage binary
+coverage.xml text eol=lf
+
+# Environment files
+.env text eol=lf
+.env.* text eol=lf
