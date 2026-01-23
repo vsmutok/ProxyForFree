@@ -18,13 +18,13 @@ Simply change the port to switch to a different proxy.
 
 | Proxy                                               | Country      |
 |-----------------------------------------------------|--------------|
-| http://demo_user:deMo_Passw0rd@178.128.207.142:8012 | 🇪🇸 Spain   |
-| http://demo_user:deMo_Passw0rd@178.128.207.142:8013 | 🇵🇱 Poland  |
-| http://demo_user:deMo_Passw0rd@178.128.207.142:8014 | 🇺🇦 Ukraine |
-| http://demo_user:deMo_Passw0rd@178.128.207.142:8015 | 🇨🇦 Canada  |
-| http://demo_user:deMo_Passw0rd@178.128.207.142:8016 | 🇫🇷 France  |
-| http://demo_user:deMo_Passw0rd@178.128.207.142:8017 | 🇲🇦 Marocco |
-| http://demo_user:deMo_Passw0rd@178.128.207.142:8018 | 🇺🇸 USA     |
+| http://demo_user:deMo_Passw0rd@178.128.207.142:8012 | 🇺🇸 USA         |
+| http://demo_user:deMo_Passw0rd@178.128.207.142:8013 | 🇨🇦 Canada      |
+| http://demo_user:deMo_Passw0rd@178.128.207.142:8014 | 🇯🇵 Japan       |
+| http://demo_user:deMo_Passw0rd@178.128.207.142:8015 | 🇳🇱 Netherlands |
+| http://demo_user:deMo_Passw0rd@178.128.207.142:8016 | 🇷🇴 Romania     |
+| http://demo_user:deMo_Passw0rd@178.128.207.142:8017 | 🇸🇬 Singapore   |
+| http://demo_user:deMo_Passw0rd@178.128.207.142:8018 | 🇲🇽 Mexico      |
 
 ---
 
