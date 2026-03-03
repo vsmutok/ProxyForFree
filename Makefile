@@ -1,8 +1,20 @@
-.PHONY: install status stop-all list-countries lint format clean help
+.PHONY: install start stop status stop-all list-countries list-configs lint format clean help api
 
 # Install dependencies using uv
 install:
 	uv sync
+
+# Start a proxy: make start country=usa config=us-free-44 port=8011
+start:
+	uv run proxy-start $(country) $(config) $(port)
+
+# Stop a proxy: make stop port=8011
+stop:
+	uv run proxy-stop $(port)
+
+# Start REST API server
+api:
+	uv run proxy-api
 
 # Show status of running proxies
 status:
@@ -37,6 +49,9 @@ clean:
 help:
 	@echo "Available commands:"
 	@echo "  make install         - Install dependencies via uv"
+	@echo "  make start           - Start a proxy (e.g., make start country=usa config=us-free-44 port=8011)"
+	@echo "  make stop            - Stop a proxy (e.g., make stop port=8011)"
+	@echo "  make api             - Start the REST API server"
 	@echo "  make status          - Show running proxies status"
 	@echo "  make stop-all        - Stop all proxies"
 	@echo "  make list-countries  - Show available countries"

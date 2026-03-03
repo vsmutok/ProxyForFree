@@ -19,3 +19,10 @@ OPENVPN_PASS = os.environ.get("OPENVPN_PASS")
 # These are the credentials for the 3proxy server itself
 PROXY_USER = os.environ.get("PROXY_USER")
 PROXY_PASS = os.environ.get("PROXY_PASS")
+
+# REST API settings
+API_HOST = os.environ.get("API_HOST", "0.0.0.0")
+API_PORT = int(os.environ.get("API_PORT", "8080"))
+API_AUTH_ENABLED = os.environ.get("API_AUTH_ENABLED", "0") == "1"
+API_USER = os.environ.get("API_USER")
+API_PASS = os.environ.get("API_PASS")

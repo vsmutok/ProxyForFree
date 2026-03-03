@@ -121,5 +121,16 @@ def main_list_countries():
     main()
 
 
+def main_api():
+    """Start the FastAPI server for managing proxies via REST API."""
+    import uvicorn
+
+    from core.config import API_HOST, API_PORT
+
+    print(f"Starting ProxyForFree API on {API_HOST}:{API_PORT}")
+    print(f"Docs available at http://{API_HOST}:{API_PORT}/docs")
+    uvicorn.run("api.app:app", host=API_HOST, port=API_PORT, reload=False)
+
+
 if __name__ == "__main__":
     main()

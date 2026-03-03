@@ -32,6 +32,7 @@ Simply change the port to switch to a different proxy.
 - **OpenVPN**: Used to establish VPN connections.
 - **3proxy**: A tiny but powerful proxy server used to route traffic.
 - **Python**: The core management script.
+- **FastAPI**: REST API for programmatic proxy management.
 - **uv**: Modern Python package manager.
 
 ---
@@ -93,6 +94,13 @@ OPENVPN_PASS=your_openvpn_password
 
 PROXY_USER=your_desired_proxy_username
 PROXY_PASS=your_desired_proxy_password
+
+# REST API settings (optional)
+API_HOST=0.0.0.0
+API_PORT=8080
+API_AUTH_ENABLED=0
+API_USER=your_api_username
+API_PASS=your_api_password
 ```
 
 ---
@@ -117,6 +125,9 @@ make status
 
 # Stop all proxies
 make stop-all
+
+# Start the REST API server
+make api
 ```
 
 ### Using Python or uv
@@ -136,6 +147,74 @@ sudo uv run proxy-stop 8011
 
 # View logs
 sudo uv run proxy-logs 8011
+
+# Start REST API server
+sudo uv run proxy-api
+```
+
+---
+
+## REST API
+
+ProxyForFree includes a built-in REST API (powered by FastAPI) for managing proxies programmatically.
+
+### Starting the API Server
+```bash
+# Default: listens on 0.0.0.0:8080
+make api
+
+# Or with custom host/port via environment variables
+API_HOST=127.0.0.1 API_PORT=9000 sudo uv run proxy-api
+```
+
+Once running, interactive docs are available at `http://<host>:<port>/docs` (Swagger UI) and `http://<host>:<port>/redoc` (ReDoc).
+
+### Authentication (optional)
+Set `API_AUTH_ENABLED=1` in your `.env` file to protect the API with HTTP Basic Auth using `API_USER` / `API_PASS` credentials.
+
+### API Endpoints
+
+| Method | Endpoint                      | Description                            |
+|--------|-------------------------------|----------------------------------------|
+| GET    | `/`                           | Health check                           |
+| GET    | `/health`                     | Health check                           |
+| GET    | `/api/v1/countries`           | List available VPN countries           |
+| GET    | `/api/v1/configs?country=usa` | List VPN configs (optionally by country) |
+| GET    | `/api/v1/proxies/status`      | Get status of all running proxies      |
+| GET    | `/api/v1/proxies/logs/{port}` | Get OpenVPN logs for a proxy           |
+| POST   | `/api/v1/proxies/start`       | Start a new proxy                      |
+| POST   | `/api/v1/proxies/stop`        | Stop a proxy                           |
+| POST   | `/api/v1/proxies/stop-all`    | Stop all proxies                       |
+
+### Example Usage
+
+**List countries:**
+```bash
+curl http://localhost:8080/api/v1/countries
+```
+
+**Start a proxy:**
+```bash
+curl -X POST http://localhost:8080/api/v1/proxies/start \
+  -H "Content-Type: application/json" \
+  -d '{"country": "usa", "config": "us-free-44", "port": 8011}'
+```
+
+**Check status:**
+```bash
+curl http://localhost:8080/api/v1/proxies/status
+```
+
+**Stop a proxy:**
+```bash
+curl -X POST http://localhost:8080/api/v1/proxies/stop \
+  -H "Content-Type: application/json" \
+  -d '{"port": 8011}'
+```
+
+**Stop all proxies:**
+```bash
+curl -X POST http://localhost:8080/api/v1/proxies/stop-all
 ```
 
 ---
