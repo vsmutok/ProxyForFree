@@ -18,7 +18,7 @@ class ProxyService:
         self.vpn_manager = VPNManager()
         self.proxy_server = ProxyServer()
 
-    def start_proxy(self, country: str, config: str, port: int) -> dict:
+    def start_proxy(self, country: str, config: str, port: int, label: str | None = None) -> dict:
         """Start a new proxy instance. Returns dict with 'success' and 'message'."""
         port_str = str(port)
         state = self.state_manager.get_state()
@@ -56,6 +56,7 @@ class ProxyService:
             "tun_interface": instance.tun_interface,
             "tun_ip": tun_ip,
             "start_time": time.ctime(),
+            "label": label,
         }
         self.state_manager.save_state(state)
         return {"success": True, "message": f"Proxy started on port {port}", "tun_ip": tun_ip}
@@ -118,6 +119,7 @@ class ProxyService:
                     "tun_interface": info.get("tun_interface", ""),
                     "tun_ip": info.get("tun_ip", ""),
                     "start_time": info.get("start_time", ""),
+                    "label": info.get("label"),
                 }
             )
         return {"proxies": proxies, "total": len(proxies)}

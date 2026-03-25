@@ -18,7 +18,7 @@ class ProxyApp:
         self.vpn_manager = VPNManager()
         self.proxy_server = ProxyServer()
 
-    def start_proxy(self, country, config, port):
+    def start_proxy(self, country, config, port, label=None):
         """Start a new proxy instance."""
         port_str = str(port)
         state = self.state_manager.get_state()
@@ -62,6 +62,7 @@ class ProxyApp:
             "tun_interface": instance.tun_interface,
             "tun_ip": tun_ip,
             "start_time": time.ctime(),
+            "label": label,
         }
         self.state_manager.save_state(state)
         print(f"Proxy successfully started on port {port}")
@@ -138,10 +139,14 @@ class ProxyApp:
             print("No proxies running.")
             return
 
-        print(f"{'PORT':<8} {'COUNTRY':<15} {'CONFIG':<30} {'TUN IP':<15} {'STARTED'}")
-        print("-" * 80)
+        print(f"{'PORT':<8} {'COUNTRY':<15} {'CONFIG':<25} {'TUN IP':<15} {'LABEL':<15} {'STARTED'}")
+        print("-" * 100)
         for port, info in state.items():
-            print(f"{port:<8} {info['country']:<15} {info['config']:<30} {info['tun_ip']:<15} {info['start_time']}")
+            label = info.get("label") or "-"
+            print(
+                f"{port:<8} {info['country']:<15} {info['config']:<25} "
+                f"{info['tun_ip']:<15} {label:<15} {info['start_time']}"
+            )
 
     def show_logs(self, port):
         """Show OpenVPN logs for a specific port."""
@@ -160,8 +165,8 @@ class ProxyApp:
 _app = ProxyApp()
 
 
-def cmd_start(country, config, port):
-    _app.start_proxy(country, config, port)
+def cmd_start(country, config, port, label=None):
+    _app.start_proxy(country, config, port, label)
 
 
 def cmd_stop(port):

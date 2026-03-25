@@ -139,8 +139,8 @@ sudo uv run proxy-list-countries
 sudo uv run proxy-list-configs usa
 
 # Start a proxy
-# Usage: sudo uv run proxy-start <country> <config_name> <port>
-sudo uv run proxy-start usa us-free-44 8011
+# Usage: sudo uv run proxy-start <country> <config_name> <port> [--label <label>]
+sudo uv run proxy-start usa us-free-44 8011 --label "user-1"
 
 # Stop a proxy
 sudo uv run proxy-stop 8011
@@ -197,7 +197,7 @@ curl http://localhost:8080/api/v1/countries
 ```bash
 curl -X POST http://localhost:8080/api/v1/proxies/start \
   -H "Content-Type: application/json" \
-  -d '{"country": "usa", "config": "us-free-44", "port": 8011}'
+  -d '{"country": "usa", "config": "us-free-44", "port": 8011, "label": "user-123"}'
 ```
 
 **Check status:**

@@ -21,7 +21,7 @@ def start_proxy(request: StartProxyRequest):
     """
     Start a new proxy instance with the given country, config, and port.
     """
-    result = service.start_proxy(request.country, request.config, request.port)
+    result = service.start_proxy(request.country, request.config, request.port, request.label)
     if not result["success"]:
         raise HTTPException(status_code=400, detail=result["message"])
     return MessageResponse(success=True, message=result["message"])

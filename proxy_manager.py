@@ -44,6 +44,7 @@ def main():
     start_parser.add_argument("country", help="Country folder name")
     start_parser.add_argument("config", help="Config file name (with or without .ovpn)")
     start_parser.add_argument("port", type=int, help="Port for the proxy")
+    start_parser.add_argument("--label", "-l", help="Optional label for this proxy instance")
 
     # Stop command
     stop_parser = subparsers.add_parser("stop", help="Stop a proxy")
@@ -69,7 +70,7 @@ def main():
     args = parser.parse_args()
 
     if args.command == "start":
-        cmd_start(args.country, args.config, args.port)
+        cmd_start(args.country, args.config, args.port, args.label)
     elif args.command == "stop":
         cmd_stop(args.port)
     elif args.command == "stop-all":

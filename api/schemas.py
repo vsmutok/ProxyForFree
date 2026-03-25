@@ -5,6 +5,7 @@ class StartProxyRequest(BaseModel):
     country: str = Field(..., description="Country folder name", examples=["usa"])
     config: str = Field(..., description="Config file name (with or without .ovpn)", examples=["us-free-44"])
     port: int = Field(..., description="Port for the proxy", ge=1024, le=65535, examples=[8011])
+    label: str | None = Field(None, description="Optional label for this proxy instance", examples=["user-123"])
 
 
 class StopProxyRequest(BaseModel):
@@ -18,6 +19,7 @@ class ProxyInfo(BaseModel):
     tun_interface: str
     tun_ip: str
     start_time: str
+    label: str | None = None
 
 
 class StatusResponse(BaseModel):
