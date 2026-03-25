@@ -11,7 +11,7 @@ security = HTTPBasic(auto_error=False)
 _security_dependency = Security(security)
 
 
-def verify_credentials(credentials: HTTPBasicCredentials | None = _security_dependency):
+async def verify_credentials(credentials: HTTPBasicCredentials | None = _security_dependency):
     if not API_AUTH_ENABLED:
         return
     if credentials is None:
@@ -39,10 +39,10 @@ app.include_router(router)
 
 
 @app.get("/", tags=["health"])
-def root():
+async def root():
     return {"status": "ok", "service": "ProxyForFree API"}
 
 
 @app.get("/health", tags=["health"])
-def health():
+async def health():
     return {"status": "healthy"}
